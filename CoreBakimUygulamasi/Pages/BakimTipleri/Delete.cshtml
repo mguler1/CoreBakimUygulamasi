@@ -1,0 +1,45 @@
+﻿@page
+@model CoreBakimUygulamasi.Pages.BakimTipleri.DeleteModel
+
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<br />
+<h2 class="text-info"> Bakım Tipi Sil</h2>
+<br />
+<form method="post">
+    <input  asp-for="BakimTipi.Id"hidden/>
+    <div>
+        <div class="form-group row ">
+            <div class="col-2">
+                <label asp-for="BakimTipi.BakimAdi"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="BakimTipi.BakimAdi"disabled class="form-control">
+            </div>
+        </div>
+        <div class="form-group row ">
+            <div class="col-2">
+                <label asp-for="BakimTipi.BakimFiyati"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="BakimTipi.BakimFiyati"disabled class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-danger form-control" value="Sil" />
+                    </div>
+                    <div class="col-6">
+                        <a asp-page="Index" class="btn btn-success form-control">İptal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

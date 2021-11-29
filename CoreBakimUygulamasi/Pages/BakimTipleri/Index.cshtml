@@ -1,0 +1,57 @@
+﻿@page
+@model CoreBakimUygulamasi.Pages.BakimTipleri.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/PAges/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<div>
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Bakım Tipleri</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="Create"class="btn btn-info btn-sm">Yeni Bakım Tipi Oluştur</a>
+        </div>
+    </div>
+    <br />
+    <div>
+        @if (Model.BakimTipi.Count==0)
+	{
+		 <p>Herhangi bir bakım tipi bulunamadı lütfen bir bakım tipi oluştutunuz.</p>
+        }
+        else
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                       Bakım Adı
+                    </th>
+                    <th>
+                      Bakım Fiyatı
+                    </th>
+                    <th>İşlemler</th>
+                </tr>
+                @foreach (var item in Model.BakimTipi)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(a => item.BakimAdi)
+                </td>
+                <td>
+                    @Html.DisplayFor(a => item.BakimFiyati)
+                </td>
+                <td style="width:150px">
+                    <div class="btn-group">
+                        <a class="btn btn-primary btn-sm "asp-page="Edit"asp-route-Id="@item.Id">Düzenle</a>
+                        <a class="btn btn-success btn-sm "asp-page="Details"asp-route-Id="@item.Id">Detaylar</a>
+                        <a class="btn btn-danger btn-sm "asp-page="Delete"asp-route-Id="@item.Id">Sil</a>
+                    </div>
+                </td>
+            </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
