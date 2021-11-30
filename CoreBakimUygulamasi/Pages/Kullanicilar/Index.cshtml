@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/PAges/Shared/_Layout.cshtml";
 }
+<form method="get" asp-page="Index">
 <br />
 <br />
 <div>
@@ -23,6 +24,33 @@
         }
         else
         {
+            <div>
+                <div style="height:60px"class="container">
+                    <div class="row">
+                        <div class="col-11">
+                            <div class="row" style="padding-top:10px">
+                                <div class="col-4">
+                                    @Html.Editor("aramaNameSurname", new { htmlAttributes = new { @class = "form-control", placeHolder = "Ad Soyad" } })
+                                </div>
+                                <div class="col-4">
+                                    @Html.Editor("aramaUserName", new { htmlAttributes = new { @class = "form-control", placeHolder = "Kullanıcı Adı" } })
+                                </div>
+                                <div class="col-4">
+                                    @Html.Editor("aramaEmail", new { htmlAttributes = new { @class = "form-control", placeHolder = "E-Mail" } })
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col1">
+                            <div class="row" style="padding-top:10px; padding-right:15px;">
+                                <button type="submit" name="submit" value="Ara" class="btn btn-info btn-sm form-control">Ara</button>
+                            </div>
+                        </div>
+
+                    </div>
+                
+                </div>
+            </div>
             <table class="table table-striped border">
                 <tr class="table-secondary">
                     <th>
@@ -67,3 +95,4 @@
         }
     </div>
 </div>
+    </form>

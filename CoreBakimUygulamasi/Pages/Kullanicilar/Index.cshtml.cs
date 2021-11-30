@@ -21,7 +21,7 @@ namespace CoreBakimUygulamasi.Pages.Kullanicilar
             _db = db;
         }
         public UserListViewModel  UserListViewModel { get; set; }
-        public async Task <IActionResult> OnGet(int productPage=1)
+        public async Task <IActionResult> OnGet(int productPage=1,string aramaUsername=null,string aramaEmail=null,string aramaNameSurname=null)
         {
             UserListViewModel = new UserListViewModel()
             {
@@ -29,6 +29,46 @@ namespace CoreBakimUygulamasi.Pages.Kullanicilar
             };
             StringBuilder param = new StringBuilder();
             param.Append("/Kullanicilar?productPage=:");
+
+            param.Append("&aramaUserName=");
+            if (aramaUsername!=null)
+            {
+                param.Append(aramaUsername);
+            }
+            param.Append("&aramaNameSurname=");
+            if (aramaNameSurname != null)
+            {
+                param.Append(aramaNameSurname);
+            }
+            param.Append("&aramaEmail=");
+            if (aramaEmail != null)
+            {
+                param.Append(aramaEmail);
+            }
+            if (aramaNameSurname!=null)
+            {
+                UserListViewModel.ApplicationUsers = await _db.ApplicationUser.Where(x => x.NameSurname.ToLower().Contains(aramaNameSurname.ToLower())).ToListAsync();
+            }
+            else
+            {
+                if (aramaUsername!=null)
+                {
+                    UserListViewModel.ApplicationUsers = await _db.ApplicationUser.Where(x => x.UserName.ToLower().Contains(aramaUsername.ToLower())).ToListAsync();
+
+                }
+                else
+                {
+                    if (aramaEmail!=null)
+                    {
+                        UserListViewModel.ApplicationUsers = await _db.ApplicationUser.Where(x => x.Email.ToLower().Contains(aramaEmail.ToLower())).ToListAsync();
+
+                    }
+                }
+            }
+
+           
+           
+            
 
             var sayi = UserListViewModel.ApplicationUsers.Count;
             UserListViewModel.pagingInfo = new PagingInfo()
