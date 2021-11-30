@@ -9,5 +9,6 @@ namespace CoreBakimUygulamasi.Utility
     {
         public const string AdminUser = "Admin";
         public const string MemberUser = "Üye";
+        public const int UserPaginationSize = 5;
     }
 }
