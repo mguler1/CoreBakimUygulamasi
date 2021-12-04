@@ -7,12 +7,15 @@ using CoreBakimUygulamasi.Data;
 using CoreBakimUygulamasi.Models;
 using CoreBakimUygulamasi.Models.ViewModel;
 using CoreBakimUygulamasi.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreBakimUygulamasi.Pages.Kullanicilar
 {
+    [Authorize(Roles = StaticRoller.AdminUser)]
+
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _db;

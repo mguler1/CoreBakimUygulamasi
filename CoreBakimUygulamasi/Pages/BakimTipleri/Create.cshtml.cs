@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoreBakimUygulamasi.Data;
 using CoreBakimUygulamasi.Models;
+using CoreBakimUygulamasi.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CoreBakimUygulamasi.Pages.BakimTipleri
 {
+    [Authorize(Roles =StaticRoller.AdminUser)]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;

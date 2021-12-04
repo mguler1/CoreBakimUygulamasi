@@ -1,5 +1,7 @@
 using CoreBakimUygulamasi.Data;
 using CoreBakimUygulamasi.Models;
+using CoreBakimUygulamasi.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace CoreBakimUygulamasi.Pages.Kullanicilar
 {
+    [Authorize(Roles = StaticRoller.AdminUser)]
+
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _db;

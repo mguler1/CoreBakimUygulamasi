@@ -8,9 +8,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CoreBakimUygulamasi.Data;
 using CoreBakimUygulamasi.Models;
+using Microsoft.AspNetCore.Authorization;
+using CoreBakimUygulamasi.Utility;
 
 namespace CoreBakimUygulamasi.Pages.BakimTipleri
 {
+    [Authorize(Roles = StaticRoller.AdminUser)]
+
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _db;

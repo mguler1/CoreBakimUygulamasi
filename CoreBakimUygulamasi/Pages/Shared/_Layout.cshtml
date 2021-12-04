@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using CoreBakimUygulamasi.Utility
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,12 +22,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-info" asp-area="" asp-page="/Index">Anasayfa</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-info" asp-area="" asp-page="/BakimTipleri/Index">Bakım Tipleri</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-info" asp-area="" asp-page="/Kullanicilar/Index">Kullanıcılar</a>
-                        </li>
+                        @if (User.IsInRole(StaticRoller.AdminUser))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-info" asp-area="" asp-page="/BakimTipleri/Index">Bakım Tipleri</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-info" asp-area="" asp-page="/Kullanicilar/Index">Kullanıcılar</a>
+                            </li>
+                        }
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
