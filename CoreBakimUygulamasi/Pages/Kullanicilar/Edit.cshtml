@@ -1,0 +1,59 @@
+﻿@page
+@model CoreBakimUygulamasi.Pages.Kullanicilar.EditModel
+@{
+   
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<h2 class="text-info">Kullanıcı Düzenle</h2>
+  <form method="post">
+   <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input  asp-for="applicationUser.Id" hidden/>
+    <div class="form-group">
+                <label asp-for="applicationUser.NameSurname" class="control-label"></label>
+                <input asp-for="applicationUser.NameSurname" class="form-control" />
+                <span asp-validation-for="applicationUser.NameSurname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="applicationUser.UserName" class="control-label"></label>
+                <input asp-for="applicationUser.UserName" class="form-control" />
+                <span asp-validation-for="applicationUser.UserName" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="applicationUser.PhoneNumber" class="control-label"></label>
+                <input asp-for="applicationUser.PhoneNumber" class="form-control" />
+                <span asp-validation-for="applicationUser.PhoneNumber" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="applicationUser.Adress" class="control-label"></label>
+                <input asp-for="applicationUser.Adress" class="form-control" />
+                <span asp-validation-for="applicationUser.Adress" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="applicationUser.Email" class="control-label"></label>
+                <input asp-for="applicationUser.Email"disabled class="form-control" />
+                <span asp-validation-for="applicationUser.Email" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="applicationUser.City" class="control-label"></label>
+                <input asp-for="applicationUser.City" class="form-control" />
+                <span asp-validation-for="applicationUser.City" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-5 offset-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="submit" class="btn btn-info form-control" value="Kaydet" />
+                        </div>
+                        <div class="col-6">
+                            <a asp-page="Index" class="btn btn-success form-control">İptal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  </form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
