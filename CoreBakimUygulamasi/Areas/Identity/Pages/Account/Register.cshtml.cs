@@ -76,6 +76,7 @@ namespace CoreBakimUygulamasi.Areas.Identity.Pages.Account
             public string City { get; set; }
             [Required]
             public string PhoneNumber { get; set; }
+            public bool IsAdmin { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -98,6 +99,7 @@ namespace CoreBakimUygulamasi.Areas.Identity.Pages.Account
                     PhoneNumber=Input.PhoneNumber,
                     UserName = Input.Email,
                     Email = Input.Email 
+                    
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
@@ -110,31 +112,50 @@ namespace CoreBakimUygulamasi.Areas.Identity.Pages.Account
                     {
                         await _roleManager.CreateAsync(new IdentityRole(StaticRoller.MemberUser));
                     }
-                   
-                    await _userManager.AddToRoleAsync(user, StaticRoller.MemberUser);
-
-                    _logger.LogInformation("User created a new account with password.");
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    if (Input.IsAdmin)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        await _userManager.AddToRoleAsync(user, StaticRoller.AdminUser);
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                        var callbackUrl = Url.Page(
+                            "/Account/ConfirmEmail",
+                            pageHandler: null,
+                            values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
+                            protocol: Request.Scheme);
+
+                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        return RedirectToPage("/Kullanici/Index");
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        await _userManager.AddToRoleAsync(user, StaticRoller.MemberUser);
+                        //   await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (User.IsInRole(StaticRoller.AdminUser))
+                        {
+                            return RedirectToPage("/Kullanici/Index");
+                        }
+                        else
+                        {
+                            return LocalRedirect(returnUrl);
+                        }
+                       
+
                     }
+
+                   // _logger.LogInformation("User created a new account with password.");
+
+                   
+
+                    //if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    //{
+                    //    return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                    //}
+                    //else
+                    //{
+                    //    await _signInManager.SignInAsync(user, isPersistent: false);
+                    //    return LocalRedirect(returnUrl);
+                    //}
                 }
                 foreach (var error in result.Errors)
                 {

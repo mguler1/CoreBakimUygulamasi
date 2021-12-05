@@ -1,5 +1,6 @@
 ﻿@page
 @model RegisterModel
+@using CoreBakimUygulamasi.Utility
 @{
     ViewData["Title"] = "Register";
 }
@@ -9,25 +10,25 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-       
+
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label >Ad Soyad</label>
+                <label>Ad Soyad</label>
                 <input asp-for="Input.NameSurname" class="form-control" />
                 <span asp-validation-for="Input.NameSurname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label >Şehir</label>
+                <label>Şehir</label>
                 <input asp-for="Input.City" class="form-control" />
                 <span asp-validation-for="Input.City" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label >Telefon Numarası</label>
+                <label>Telefon Numarası</label>
                 <input asp-for="Input.PhoneNumber" class="form-control" />
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label >E-Posta</label>
+                <label>E-Posta</label>
                 <input asp-for="Input.Email" class="form-control" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
@@ -37,10 +38,18 @@
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label >Şifre Tekrar</label>
+                <label>Şifre Tekrar</label>
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+            @if (User.IsInRole(StaticRoller.AdminUser))
+            {
+            <div class="form-group">
+                <label>IsAdmin</label>
+                <input asp-for="Input.IsAdmin" />
+            </div>
+            }
+
             <button type="submit" class="btn btn-primary">Kayıt Ol</button>
         </form>
     </div>
