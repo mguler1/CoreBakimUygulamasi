@@ -32,7 +32,7 @@ namespace CoreBakimUygulamasi
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders().AddDefaultUI().AddEntityFrameworkStores<ApplicationDbContext>();
-               
+            services.AddAuthentication().AddFacebook(fb => { fb.AppId = "xxx"; fb.AppSecret = "xx"; });
             services.AddRazorPages().AddRazorRuntimeCompilation();//paketi ekledim.
         }
 
