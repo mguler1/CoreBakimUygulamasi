@@ -1,0 +1,97 @@
+﻿@page
+@model CoreBakimUygulamasi.Pages.Makineler.EditModel
+@{
+
+    ViewData["Title"] = "Edit";
+    Layout = "~/PAges/Shared/_Layout.cshtml";
+}
+<br />
+<h2 class="text-info">Makine Oluştur</h2>
+<br />
+<form method="post">
+    <div>
+        <div class="form-group row ">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+            </div>
+            <input type="hidden" asp-for="Makine.MakineId" />
+            <input type="hidden" asp-for="Makine.KullaniciId" />
+            <div class="col-2">
+                <label asp-for="Makine.MakineSeriNo"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Makine.MakineSeriNo" class="form-control">
+            </div>
+            <span asp-validation-for="Makine.MakineSeriNo" class="text-danger"></span>
+        </div>
+        <div class="form-group row ">
+            <div class="col-2">
+                <label asp-for="Makine.MakineMarka"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Makine.MakineMarka" class="form-control">
+            </div>
+            <span asp-validation-for="Makine.MakineMarka" class="text-danger"></span>
+        </div>
+        <div class="form-group row ">
+            <div class="col-2">
+                <label asp-for="Makine.MakineModel"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Makine.MakineModel" class="form-control">
+            </div>
+            <span asp-validation-for="Makine.MakineModel" class="text-danger"></span>
+        </div>
+        <div class="form-group row ">
+            <div class="col-2">
+                <label asp-for="Makine.MakineSaatSayaci"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Makine.MakineSaatSayaci" class="form-control">
+            </div>
+            <span asp-validation-for="Makine.MakineSaatSayaci" class="text-danger"></span>
+        </div>
+        <div class="form-group row ">
+            <div class="col-2">
+                <label asp-for="Makine.MakineTipi"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Makine.MakineTipi" class="form-control">
+            </div>
+            <span asp-validation-for="Makine.MakineTipi" class="text-danger"></span>
+        </div>
+        <div class="form-group row ">
+            <div class="col-2">
+                <label asp-for="Makine.MakineUretimTarihi"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Makine.MakineUretimTarihi" class="form-control">
+            </div>
+            <span asp-validation-for="Makine.MakineUretimTarihi" class="text-danger"></span>
+        </div>
+        <div class="form-group row ">
+            <div class="col-2">
+                <label asp-for="Makine.MakineAciklama"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Makine.MakineAciklama" class="form-control">
+            </div>
+            <span asp-validation-for="Makine.MakineAciklama" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <div class="row">
+                    <div class="col-6">
+                        <input type="submit" class="btn btn-info form-control" value="Güncelle" />
+                    </div>
+                    <div class="col-6">
+                        <a asp-page="Index"asp-route-KullaniciId="@Model.Makine.KullaniciId" class="btn btn-success form-control">İptal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts
+{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
