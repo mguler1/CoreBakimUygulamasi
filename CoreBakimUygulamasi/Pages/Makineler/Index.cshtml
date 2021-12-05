@@ -1,0 +1,127 @@
+﻿@page
+@model CoreBakimUygulamasi.Pages.Makineler.IndexModel
+@using CoreBakimUygulamasi.Utility
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/PAges/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info py-2">Müşteri Makine Kaydı</h2>
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-dark text-light ml-0 row container">
+            <div class="col-6">
+                <i class="fade"></i>
+            </div>
+            <div class="col-6 text-right">
+                @if (User.IsInRole(StaticRoller.AdminUser))
+                {
+                    <a asp-page="/Kullanicilar/Index"class="btn btn-outline-info btn-sm">Kullanıcıları Listele</a>
+                }
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row"style="padding-bottom:30px;padding-top:20px;">
+                <div class="col-md-3">
+                    <p>
+                        <a asp-action="Create"asp-route-userId="@Model.kullanıcıMakineViewModel.UserObj.Id"class="btn btn-info form-control">Yeni Makine </a>
+                    </p>
+                </div>
+                <div class="col-md-6 offset-md-3">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="kullanıcıMakineViewModel.UserObj.NameSurname">
+                            </label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px">
+                            <input asp-for="kullanıcıMakineViewModel.UserObj.NameSurname" disabled class="form-control" />
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="kullanıcıMakineViewModel.UserObj.PhoneNumber">
+                            </label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px">
+                            <input asp-for="kullanıcıMakineViewModel.UserObj.PhoneNumber" disabled class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="kullanıcıMakineViewModel.UserObj.Email">
+                            </label>
+                        </div>
+                        <div class="col-sm-8" style="padding-bottom:5px">
+                            <input asp-for="kullanıcıMakineViewModel.UserObj.Email" disabled class="form-control" />
+                        </div>
+
+                    </div>
+                </div>
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th> Seri No</th>
+                        <th> Marka</th>
+                        <th> Model</th>
+                        <th> Tip</th>
+                        <th></th>
+                        @if (User.IsInRole(StaticRoller.MemberUser))
+                        {
+                            <th></th>
+                        }
+                        <th></th>
+
+                    </tr>
+                    @foreach (var item in Model.kullanıcıMakineViewModel.Makineler)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => item.MakineSeriNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.MakineMarka)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.MakineModel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => item.MakineTipi)
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary btn-sm" asp-page="../Bakimlar/BakimGecmisi" asp-routeId="@item.MakineId">
+                            Bakım Geçmişi
+                        </a>
+                    </td>
+                    @if (User.IsInRole(StaticRoller.AdminUser))
+                    {
+                        <td>
+                            <a class="btn btn-success btn-sm" asp-page="../Bakimlar/Create" asp-route-MakineId="@item.MakineId">
+                                Bakım Oluştur
+                            </a>
+                        </td>
+                    }
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-primary btn-sm text-white" asp-page="Edit" asp-route-MakineId="@item.MakineId">Düzenle</a>
+                            <a class="btn btn-danger btn-sm text-white" asp-page="Delete" asp-route-MakineId="@item.MakineId">Sil</a>
+
+                        </div>
+                    </td>
+
+                </tr>
+                    }
+                    
+                </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+</div>

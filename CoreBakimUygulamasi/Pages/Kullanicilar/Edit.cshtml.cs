@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoreBakimUygulamasi.Pages.Kullanicilar
 {
-    [Authorize(Roles = StaticRoller.AdminUser)]
+//    [Authorize(Roles = StaticRoller.AdminUser)]
 
     public class EditModel : PageModel
     {

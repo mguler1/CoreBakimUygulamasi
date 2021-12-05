@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CoreBakimUygulamasi.Pages.BakimTipleri
 {
-    [Authorize(Roles =StaticRoller.AdminUser)]
+   // [Authorize(Roles =StaticRoller.AdminUser)]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _db;

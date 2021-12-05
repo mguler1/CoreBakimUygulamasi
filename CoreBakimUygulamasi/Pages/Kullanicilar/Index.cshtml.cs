@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreBakimUygulamasi.Pages.Kullanicilar
 {
-    [Authorize(Roles = StaticRoller.AdminUser)]
+   // [Authorize(Roles = StaticRoller.AdminUser)]
 
     public class IndexModel : PageModel
     {
@@ -69,9 +69,7 @@ namespace CoreBakimUygulamasi.Pages.Kullanicilar
                 }
             }
 
-           
-           
-            
+          
 
             var sayi = UserListViewModel.ApplicationUsers.Count;
             UserListViewModel.pagingInfo = new PagingInfo()

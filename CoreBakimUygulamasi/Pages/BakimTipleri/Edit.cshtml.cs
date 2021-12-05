@@ -13,7 +13,7 @@ using CoreBakimUygulamasi.Utility;
 
 namespace CoreBakimUygulamasi.Pages.BakimTipleri
 {
-    [Authorize(Roles = StaticRoller.AdminUser)]
+   // [Authorize(Roles = StaticRoller.AdminUser)]
 
     public class EditModel : PageModel
     {
