@@ -16,5 +16,9 @@ namespace CoreBakimUygulamasi.Data
         public DbSet<BakimTipi> BakimTipi { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Makine> Makine { get; set; }
+
+        public DbSet<BakimHizmetKart> BakimHizmetKart { get; set; }
+        public DbSet<BakimHizmetiGenel> BakimHizmetiGenel { get; set; }
+        public DbSet<BakimHizmetDetay> BakimHizmetDetay { get; set; }
     }
 }
